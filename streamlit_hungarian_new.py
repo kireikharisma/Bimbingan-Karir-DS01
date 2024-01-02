@@ -215,9 +215,9 @@ with tab1 :
                     status_text.empty()
                     bar.empty()
 
-                col1, col2 = st.columns([1,2])
+            col1, col2 = st.columns([1,2])
 
-                with col1:
-                    st.dataframe(uploaded_result)
-                with col2:
-                    st.dataframe(uploaded_df)
+            with col1:
+                st.dataframe(uploaded_result)
+            with col2:
+                st.dataframe(uploaded_df)
