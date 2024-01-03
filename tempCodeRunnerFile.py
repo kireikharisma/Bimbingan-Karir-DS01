@@ -1,0 +1,1 @@
+uploaded_df = scaler_model.transform(uploaded_df)
