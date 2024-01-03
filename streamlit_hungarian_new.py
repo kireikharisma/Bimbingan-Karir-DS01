@@ -181,8 +181,8 @@ with tab2 :
 
     if file_uploaded:
         uploaded_df = pd.read_csv(file_uploaded)
-        uploaded_df = scaler_model.transform(uploaded_df)
-        prediction_arr = model.predict(uploaded_df)
+        uploaded_df_scaler = scaler_model.transform(uploaded_df)
+        prediction_arr = model.predict(uploaded_df_scaler)
 
         bar = st.progress(0)
         status_text = st.empty()
