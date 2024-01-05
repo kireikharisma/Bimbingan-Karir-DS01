@@ -35,7 +35,7 @@ with tab1 :
     st.sidebar.write(f":orange[Min] value: :orange[**{df_final['age'].min()}**], :red[Max] value: :red[**{df_final['age'].max()}**]")
     st.sidebar.write("")
 
-    sex_cb = st.sidebar.selectbox(label=":violet[**Sex**]", options=["Male", "Female"])
+    sex_cb = st.sidebar.radio(label=":violet[**Sex**]", options=["Male", "Female"])
     st.sidebar.write("")
     st.sidebar.write("")
     if sex_cb == "Male" :
@@ -104,7 +104,7 @@ with tab1 :
     #--Value 0 : No
     #--Value 1 : Yes
     
-    oldpeak = st.sidebar.number_input(label=":violet[**ST depression induced by exercise relativve to rest**]", min_value=df_final['oldpeak'].min(), max_value=df_final['oldpeak'].max())    
+    oldpeak = st.sidebar.slider(label=":violet[**ST depression induced by exercise relativve to rest**]", min_value=df_final['oldpeak'].min(), max_value=df_final['oldpeak'].max())    
     st.sidebar.write(f":orange[Min] value: :orange[**{df_final['oldpeak'].min()}**], :red[Max] value: :red[**{df_final['oldpeak'].max()}**]")
     st.sidebar.write("")
 
@@ -173,11 +173,11 @@ with tab2 :
     sample_csv = df_final.iloc[:5, :-1].to_csv(index=False).encode('utf-8')
 
     st.write("")
-    st.download_button("Download CSV Example", data=sample_csv, file_name='sample_heart_disease_parameteers.csv', mime='text/csv')
+    st.download_button("Download CSV Example", data=sample_csv, file_name='sample_heart_disease_parameters.csv', mime='text/csv')
 
     st.write("")
     st.write("")
-    file_uploaded = st.file_uploader("UPload a CSV file", type='csv')
+    file_uploaded = st.file_uploader("Upload a CSV file", type='csv')
 
     if file_uploaded:
         uploaded_df = pd.read_csv(file_uploaded)
@@ -224,3 +224,18 @@ with tab2 :
             st.dataframe(uploaded_result)
         with col2:
             st.dataframe(uploaded_df)
+        
+        @st.cache_data
+        def convert_df(df):
+            # IMPORTANT: Cache the conversion to prevent computation on every rerun
+            return df.to_csv().encode('utf-8')
+
+        uploaded_df['result'] = result_arr
+        csv = convert_df(uploaded_df)
+
+        st.download_button(
+            label="Download data result as CSV",
+            data=csv,
+            file_name=f'result.csv',
+            mime='text/csv',
+        )
