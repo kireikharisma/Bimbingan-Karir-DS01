@@ -7,7 +7,7 @@ import streamlit as st
 model = pickle.load(open('knn_smote_normal_tun_model.pkl', 'rb'))
 model_info = pickle.load(open('model_info.pkl', 'rb'))
 scaler_model = pickle.load(open('scaler_model.pkl', 'rb'))
-df_final = model_info['parameter']
+df_final = model_info['dataframe']
 accuracy = model_info['accuracy']
 
 # mengatur title web browser
