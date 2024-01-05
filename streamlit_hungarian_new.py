@@ -104,7 +104,7 @@ with tab1 :
     #--Value 0 : No
     #--Value 1 : Yes
     
-    oldpeak = st.sidebar.slider(label=":violet[**ST depression induced by exercise relativve to rest**]", min_value=df_final['oldpeak'].min(), max_value=df_final['oldpeak'].max())    
+    oldpeak = st.sidebar.number_input(label=":violet[**ST depression induced by exercise relativve to rest**]", min_value=df_final['oldpeak'].min(), max_value=df_final['oldpeak'].max())    
     st.sidebar.write(f":orange[Min] value: :orange[**{df_final['oldpeak'].min()}**], :red[Max] value: :red[**{df_final['oldpeak'].max()}**]")
     st.sidebar.write("")
 
